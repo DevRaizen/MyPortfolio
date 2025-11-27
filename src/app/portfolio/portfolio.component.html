@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en"  class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body  class="scroll-smooth">
+   <!-- NAVBAR -->
+<nav class="fixed top-0 w-full bg-black/40 backdrop-blur-md border-b border-white/10 z-50">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <h1 class="text-white text-xl font-bold tracking-wider">SHAWN.dev</h1>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex gap-8 text-gray-300">
+      <button class="hover:text-purple-400" (click)="scrollTo('home')">Home</button>
+      <button class="hover:text-purple-400" (click)="scrollTo('skills')">Skills</button>
+      <button class="hover:text-purple-400" (click)="scrollTo('projects')">Projects</button>
+      <button class="hover:text-purple-400" (click)="scrollTo('contact')">Contact</button>
+    </div>
+
+    <!-- Burger -->
+    <button class="text-white text-3xl md:hidden" (click)="toggleMenu()">☰</button>
+  </div>
+
+  <!-- Mobile -->
+  <div *ngIf="menuOpen" class="md:hidden flex flex-col bg-black/80 text-center text-gray-300 py-4">
+    <button class="py-2" (click)="scrollTo('home')">Home</button>
+    <button class="py-2" (click)="scrollTo('skills')">Skills</button>
+    <button class="py-2" (click)="scrollTo('projects')">Projects</button>
+    <button class="py-2" (click)="scrollTo('contact')">Contact</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-[#0a0a0f] pt-20">
+  <h2 class="text-5xl md:text-6xl font-extrabold text-white">
+    Hi, I'm <span class="text-purple-500">Shawn Michael Bulos</span>
+  </h2>
+
+  <p class="text-gray-300 text-lg mt-4 max-w-xl">
+  Innovative and detail-oriented developer with hands-on experience in 
+  <span class="text-purple-400">Database Systems</span>, 
+  <span class="text-purple-400">NLP Integrations</span>, and 
+  <span class="text-purple-400">Full-Stack Web Developments</span>.
+</p>
+
+
+ <div class="flex gap-4 mt-8">
+  <a (click)="scrollTo('projects')" 
+     class="bg-purple-500 text-black px-6 py-3 rounded-full font-semibold hover:bg-purple-600 transition">
+    View My Work
+  </a>
+
+  <!-- DOWNLOAD CV BUTTON -->
+  <a href="Shawn Michael.pdf" 
+     download 
+     class="bg-gray-800 border border-gray-600 px-6 py-3 rounded-full font-semibold hover:border-purple-500 transition">
+    Download CV
+  </a>
+</div>
+
+
+  <img src="profile.jpg" class="w-40 h-40 rounded-full border-4 border-purple-500 mt-10 object-cover">
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-20 bg-[#0d0d14] text-center">
+  <h2 class="text-4xl font-bold text-white">Skills</h2>
+  <p class="text-gray-400 mt-2">Technologies I Use</p>
+
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 max-w-6xl mx-auto mt-10 px-6">
+    <div *ngFor="let skill of skills" class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-purple-500 transition flex flex-col items-center">
+      <img [src]="skill.img" class="w-16 h-16 object-contain mb-2">
+      <span class="text-white font-medium">{{ skill.name }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-20 bg-[#0a0a0f] text-center">
+  <h2 class="text-4xl font-bold text-white">Projects</h2>
+
+  <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-10 px-6">
+
+    <!-- EvalOn Project -->
+    <div class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group">
+      <img src="Tval.png"
+           alt="EvalOn Screenshot"
+           class="w-full h-40 object-cover opacity-80 group-hover:opacity-100 transition" />
+
+      <div class="p-6 text-left">
+        <h3 class="text-white text-xl font-semibold">EvalOn – Teacher Evaluation System</h3>
+        <p class="text-gray-400 mt-2">
+          Full-stack evaluation platform using Angular, Tailwind CSS, PHP, Python (NLP) & MySQL.
+        </p>
+
+        <!-- EXPLANATION -->
+        <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+          EvalOn is a school evaluation system designed to help students evaluate teachers
+          through a structured form. Admins and principals can manage users, set schedules,
+          generate reports, and monitor performance. The system also applies Python NLP to
+          analyze comments and extract sentiment insights automatically.
+        </p>
+
+      
+      </div>
+    </div>
+
+    <!-- Apartment Management System -->
+    <div class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group">
+      <img src="apartment.jpeg"
+           alt="Apartment System Screenshot"
+           class="w-full h-40 object-cover opacity-80 group-hover:opacity-100 transition" />
+
+      <div class="p-6 text-left">
+        <h3 class="text-white text-xl font-semibold">Apartment Management System</h3>
+        <p class="text-gray-400 mt-2">
+          Java & JavaFX desktop app with QR (ZXing) and MySQL integration.
+        </p>
+
+        <!-- EXPLANATION -->
+        <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+          This system is a desktop application that helps landlords manage tenants,
+          payments, rooms, and rental history. QR codes are generated using ZXing to make
+          tenant identification faster and more secure. MySQL stores all rental records,
+          ensuring efficient data tracking and reporting.
+        </p>
+
+        
+      </div>
+    </div>
+
+    <!-- MayWeather App -->
+    <div class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group md:col-span-2">
+      <img src="MayWeather.png"
+           alt="MayWeather App"
+           class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition" />
+
+      <div class="p-6 text-left">
+        <h3 class="text-white text-xl font-semibold">MayWeather – Weather Mobile App</h3>
+        <p class="text-gray-400 mt-2">
+          Built using Ionic, SQLite & a weather API with offline caching and clean UI.
+        </p>
+
+        <!-- EXPLANATION -->
+        <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+          MayWeather is a mobile app that provides real-time weather data and forecasts.
+          It stores recent weather results using SQLite, allowing the app to work even without
+          an internet connection. Designed with a clean UI, it focuses on accessibility and
+          fast information delivery for mobile users.
+        </p>
+
+       
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<!-- Contact Section --> <section class="py-20 bg-[#0d0d14]" id="contact">
+     <h2 class="text-4xl font-bold text-center text-purple-400 mb-10">Contact Me</h2> 
+     <div class="max-w-3xl mx-auto px-6 text-center text-gray-300">
+         <p class="mb-6">I'm open to opportunities and collaborations. Feel free to reach out to me!</p>
+         <div class="flex flex-col md:flex-row justify-center gap-6"> 
+            <a href="mailto:your.shawnbulos03@gmail.com" class="bg-purple-400 text-gray-900 px-6 py-3 rounded-full hover:bg-purple-500 flex items-center gap-2"> 
+                <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" class="w-5 h-5" alt="Email"> Email Me </a> 
+                <a href="https://github.com/DevRaizen" class="bg-gray-800 text-white px-6 py-3 rounded-full hover:bg-gray-700 flex items-center gap-2"> 
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-5 h-5" alt="GitHub"> GitHub </a>
+                 </div>
+                </div> 
+        </section>
+
+<!-- FOOTER -->
+<footer class="py-6 text-center text-gray-500 border-t border-white/10 bg-[#0a0a0f]">
+  © 2025 Shawn — All Rights Reserved.
+</footer>
+
+<a (click)="chatOpen = true"
+   class="fixed bottom-6 right-6 bg-purple-500 text-white px-5 py-3 rounded-full shadow-lg 
+          hover:bg-purple-600 transition font-semibold z-50 flex items-center gap-2">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8-1.295 0-2.53-.244-3.657-.686L3 21l1.296-3.887C3.488 15.869 3 14.484 3 13c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+  </svg>
+
+  Chat with Shawn
+</a>
+</body>
+</html>
+
+
+<!-- CHAT BOX (BOTTOM RIGHT LIKE MESSENGER) -->
+<div 
+  *ngIf="chatOpen"
+  class="fixed bottom-20 right-5 w-80 bg-[#121212] rounded-xl border border-white/10 shadow-2xl z-50">
+
+  <!-- TOP PROFILE -->
+  <!-- TOP PROFILE -->
+<div class="flex flex-col border-b border-white/10">
+  <div class="flex items-center gap-3 p-2">
+    <img src="profile.jpg" alt="Shawn" class="w-10 h-10 rounded-full object-cover">
+    <div class="flex flex-col">
+      <h2 class="text-white font-semibold text-sm">Chat with Shawn</h2>
+      <div class="flex items-center text-xs text-gray-400 gap-2">
+        <span class="flex items-center gap-1">
+          <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+          Online
+        </span>
+        <span>• Powered by <span class="text-purple-500 font-semibold">Gemini</span></span>
+      </div>
+    </div>
+    <button (click)="chatOpen = false" class="ml-auto text-gray-400 hover:text-white">✕</button>
+  </div>
+</div>
+
+
+  <!-- MESSAGES -->
+  <div id="chat-box" class="p-4 h-72 overflow-y-auto text-gray-300 space-y-3">
+    <div *ngFor="let msg of messages">
+      
+      <!-- Bot Messages -->
+      <div *ngIf="msg.sender === 'bot'" class="flex gap-2 items-start">
+        <img src="profile.jpg" alt="Shawn" class="w-6 h-6 rounded-full mt-1">
+        <div>
+          <div class="text-xs text-gray-400 mb-1">Shawn</div>
+          <div class="p-3 rounded-lg max-w-[75%] bg-white/10 text-gray-300 break-words">
+            {{ msg.text }}
+          </div>
+        </div>
+      </div>
+
+      <!-- User Messages -->
+      <div *ngIf="msg.sender === 'me'" class="p-3 rounded-lg max-w-[75%] break-words ml-auto bg-purple-600 text-white">
+        {{ msg.text }}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- INPUT -->
+  <div class="p-3 border-t border-white/10 flex gap-2">
+    <input 
+      type="text" 
+      [(ngModel)]="newMessage"
+      (keyup.enter)="sendMessage()"
+      placeholder="Type a message..."
+      class="flex-1 px-3 py-2 bg-white/10 border border-white/10 rounded-lg text-white focus:border-purple-500 outline-none">
+    <button 
+      (click)="sendMessage()"
+      class="px-4 py-2 bg-purple-500 rounded-lg hover:bg-purple-600 text-white">
+      Send
+    </button>
+  </div>
+
+</div>
