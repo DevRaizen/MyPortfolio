@@ -8,7 +8,7 @@ import { Observable, firstValueFrom } from 'rxjs';
 export class GeminiService {
 
   // Vercel backend endpoint
-private apiUrl = 'https://api-cv9gxh0uc-devraizens-projects.vercel.app/api/data';
+private apiUrl = 'https://api-izv2hspt0-devraizens-projects.vercel.app/api/data';
 
   constructor(private http: HttpClient) {}
 
