@@ -8,14 +8,14 @@ import { Observable, firstValueFrom } from 'rxjs';
 export class GeminiService {
 
   // Vercel backend endpoint
-private apiUrl = 'https://api-izv2hspt0-devraizens-projects.vercel.app/api/data';
+private apiUrl = 'https://api-b2xpdvrqc-devraizens-projects.vercel.app/api/data';
 
   constructor(private http: HttpClient) {}
 
-  async sendMessage(prompt: string, myContext: string): Promise<any> {
+  async sendMessage(prompt: string): Promise<any> {
     try {
       // Send the prompt + context to your backend
-      const payload = { prompt, myContext };
+      const payload = { prompt};
 
       // Use firstValueFrom to convert Observable to Promise
       const response: any = await firstValueFrom(this.http.post(this.apiUrl, payload));

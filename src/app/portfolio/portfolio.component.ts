@@ -103,7 +103,7 @@ Additional Context:
 - Favorite Food Adobong Sitaw
 `;
 
- const resText = await this.geminiService.sendMessage(userMessage, myContext);
+ const resText = await this.geminiService.sendMessage(userMessage);
 
 // Use it directly since service already returns a string
 const botReply = resText || "No response";
