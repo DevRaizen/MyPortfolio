@@ -14,7 +14,7 @@
         class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
       >
         <h1 class="text-white text-xl font-bold tracking-wider">SHAWN.dev</h1>
-
+    
         <!-- Desktop Nav -->
         <div class="hidden md:flex gap-8 text-gray-300">
           <button class="hover:text-purple-400" (click)="scrollTo('home')">
@@ -110,6 +110,35 @@
       <h2 class="text-4xl font-bold text-white">Projects</h2>
 
       <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mt-10 px-6">
+
+        <!-- Core Atelier Project -->
+        <div
+          class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group"
+        >
+          <img
+            src="coreatelier.png"
+            alt="Core Atelier Screenshot"
+            class="w-full h-40 object-cover opacity-80 group-hover:opacity-100 transition"
+          />
+
+          <div class="p-6 text-left">
+            <h3 class="text-white text-xl font-semibold">
+              Core Atelier – Booking Website
+            </h3>
+
+            <p class="text-gray-400 mt-2">
+              Booking platform with admin management, scheduling, and customer services.
+            </p>
+
+            <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+              Core Atelier is a booking website built using WordPress that allows
+              customers to schedule and manage services online. The platform includes
+              booking management, scheduling features, admin controls, and a
+              user-friendly interface to provide a smooth customer experience.
+            </p>
+          </div>
+        </div>
+
         <!-- EvalOn Project -->
         <div
           class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group"
@@ -171,7 +200,7 @@
 
         <!-- MayWeather App -->
         <div
-          class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group md:col-span-2"
+          class="bg-white/5 rounded-xl border border-white/10 overflow-hidden group "
         >
           <img
             src="MayWeather.webp"
