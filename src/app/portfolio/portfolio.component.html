@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" >
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body class="scroll-smooth">
+  <body >
     <!-- NAVBAR -->
     <nav
       class="fixed top-0 w-full bg-black/40 backdrop-blur-md border-b border-white/10 z-50"
@@ -320,7 +320,7 @@
 
 <!-- CHAT BOX (BOTTOM RIGHT LIKE MESSENGER) -->
 <div
-  *ngIf="chatOpen"
+  *ngIf="chatOpen" data-lenis-prevent 
   class="fixed bottom-20 right-5 w-80 bg-[#121212] rounded-xl border border-white/10 shadow-2xl z-50"
 >
   <!-- TOP PROFILE -->

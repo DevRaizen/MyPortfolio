@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { GeminiService } from '../gemini.service';
+import Lenis from '@studio-freight/lenis';
+
 
 @Component({
   selector: 'app-portfolio',
@@ -7,12 +9,41 @@ import { GeminiService } from '../gemini.service';
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
-export class PortfolioComponent implements OnInit {
+export class PortfolioComponent implements OnInit, OnDestroy {
   menuOpen = false;
   email = '';
+  lenis!: Lenis;
 
   ngOnInit(): void {
     this.email = 'shaw' + 'nbu' + 'los03' + '@gmail.com';
+    this.initLenis();
+  }
+
+  ngOnDestroy(): void {
+    this.lenis?.destroy();
+  }
+
+  private initLenis(): void {
+    this.lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    const raf = (time: number) => {
+      this.lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
+  }
+
+  scrollTo(sectionId: string) {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      this.lenis.scrollTo(element, { offset: -64 });
+    }
+    this.closeMenu();
   }
 
   toggleMenu() {
@@ -26,13 +57,6 @@ export class PortfolioComponent implements OnInit {
   chatOpen = false;
 
   constructor(private geminiService: GeminiService) {}
-  scrollTo(sectionId: string) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    this.closeMenu(); // closes mobile menu if open
-  }
 
   skills = [
     {
