@@ -253,3 +253,9 @@ body {
     transition: width 0.3s;
   }
   .underline-animation:hover::after { width: 100%; }
+.bg-grid {
+  background-image: linear-gradient(rgba(167, 139, 250, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167, 139, 250, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+
+}

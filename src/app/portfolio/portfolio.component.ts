@@ -1,22 +1,80 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { GeminiService } from '../gemini.service';
 import Lenis from '@studio-freight/lenis';
 
-
+interface TerminalLine{
+  html: string;
+  pause: number;
+}
+ 
 @Component({
   selector: 'app-portfolio',
   standalone: false,
   templateUrl: './portfolio.component.html',
   styleUrl: './portfolio.component.css',
 })
-export class PortfolioComponent implements OnInit, OnDestroy {
+export class PortfolioComponent implements OnInit, OnDestroy, AfterViewInit{
+  @ViewChild('terminalOutput') terminalOutput?: ElementRef<HTMLDivElement>;
   menuOpen = false;
   email = '';
   lenis!: Lenis;
 
+   
+   private terminalLines: TerminalLine[] = [
+    { html: '<span class="text-purple-400">const</span> developer = {', pause: 150 },
+    { html: '&nbsp;&nbsp;<span class="text-blue-300">name</span>: <span class="text-green-400">"Shawn Michael Bulos"</span>,', pause: 150 },
+    { html: '&nbsp;&nbsp;<span class="text-blue-300">role</span>: <span class="text-green-400">"Full Stack Developer"</span>,', pause: 150 },
+    { html: '&nbsp;&nbsp;<span class="text-blue-300">based</span>: <span class="text-green-400">"Cabanatuan, Nueva Ecija"</span>,', pause: 150 },
+    { html: '&nbsp;&nbsp;<span class="text-blue-300">stack</span>: [<span class="text-green-400">"Angular"</span>, <span class="text-green-400">"React"</span>, <span class="text-green-400">"Java"</span>],', pause: 150 },
+    { html: '&nbsp;&nbsp;<span class="text-blue-300">status</span>: <span class="text-green-400">"Open to work"</span>', pause: 150 },
+    { html: '};', pause: 0 },
+  ];
+
   ngOnInit(): void {
     this.email = 'shaw' + 'nbu' + 'los03' + '@gmail.com';
     this.initLenis();
+  }
+  ngAfterViewInit(): void {
+   
+    this.typeTerminal();
+
+ 
+  }
+
+  
+  private typeTerminal(): void {
+    const out = this.terminalOutput?.nativeElement;
+    if (!out) return;
+ 
+    let lineIndex = 0;
+ 
+    const typeLine = () => {
+      if (lineIndex >= this.terminalLines.length) {
+        out.insertAdjacentHTML(
+          'beforeend',
+          '<span class="inline-block w-[7px] h-[1.1em] bg-accent-glow align-text-bottom ml-px animate-blink"></span>'
+        );
+        return;
+      }
+ 
+      const current = this.terminalLines[lineIndex];
+      const div = document.createElement('div');
+      out.appendChild(div);
+ 
+      let charIndex = 0;
+      const interval = setInterval(() => {
+        charIndex++;
+        const progress = Math.min(charIndex * 3, current.html.length);
+        div.innerHTML = current.html.slice(0, progress);
+        if (progress >= current.html.length) {
+          clearInterval(interval);
+          lineIndex++;
+          setTimeout(typeLine, current.pause);
+        }
+      }, 12);
+    };
+ 
+    setTimeout(typeLine, 900);
   }
 
   ngOnDestroy(): void {
